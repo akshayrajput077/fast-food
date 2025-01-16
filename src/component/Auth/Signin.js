@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 export default function SignIn() {
   return (
@@ -14,7 +15,7 @@ export default function SignIn() {
         </div>
         <div className="flex flex-col md:w-1/2 md:pl-12">
           <h2 className="title-font font-semibold text-gray-800 tracking-wider text-sm mb-3">CATEGORIES</h2>
-
+          <Link href="/dashboard">hello</Link>
         </div>
       </div>
     </section>
