@@ -2,14 +2,14 @@
 import React, { useState } from "react";
 
 export default function payment() {
-  const [showCardPaymentForm, setShowCardPaymentForm] = useState(false);
+  const [showCardPaymenthtmlForm, setShowCardPaymenthtmlForm] = useState(false);
   const handleCloseModal = () => {
     setShowPaymentModal(false);
-    setShowCardPaymentForm(false);
+    setShowCardPaymenthtmlForm(false);
   };
   return (
     <div className="m-auto px-4 py-12">
-      {showCardPaymentForm && (
+      {showCardPaymenthtmlForm && (
         <div className="fixed inset-0 flex justify-center items-center bg-gray-500 bg-opacity-50 z-10">
           <form>
             <div className="mb-4">
