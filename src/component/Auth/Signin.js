@@ -1,26 +1,33 @@
 
 "use client"
 import { useState } from 'react';
-import { loginUser } from '@/services/signIn/signIn';
+import { loginUser } from '@/services/auth/signIn.service';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from "react-hook-form";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function SignIn() {
   const [error, setError] = useState('');
   const router = useRouter();
+  const [isPassword, setIsPassword] = useState(false);
+  const toggleisPassword = () => setIsPassword(prevState => !prevState);
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const handleLogin = async (data) => {
-    const { email, password } = data;
-    const user = await loginUser(email, password);
-    if (user) {
-      router.push('/dashboard');
-    } else {
-      setError('Something went wrong');
-      setTimeout(() => {
-        setError('');
-      }, 2000);
+    try {
+      const { email, password } = data;
+      const user = await loginUser(email, password);
+      if (user) {
+        router.push('/dashboard');
+      } else {
+        setError('Something went wrong');
+        setTimeout(() => {
+          setError('');
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Login error:', error);
     }
   };
 
@@ -52,36 +59,54 @@ export default function SignIn() {
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(handleLogin)}>
               <div className='text-left'>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="youremail@gmial.com"
-                  {...register("email", {
-                    required: "Email is required",
-                    maxLength: { value: 50, message: "The email should have at most 50 characters" },
-                    pattern: {
-                      value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
-                      message: "Email address must be a valid address",
-                    },
-                  })}
-                />
+                <div className="mt-1">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="youremail@gmial.com"
+                    {...register("email", {
+                      required: "Email is required",
+                      maxLength: { value: 50, message: "The email should have at most 50 characters" },
+                      pattern: {
+                        value: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/,
+                        message: "Email address must be a valid address",
+                      },
+                    })}
+                  />
+                </div>
                 {errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
               </div>
               <div className='text-left'>
                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="••••••••"
-                  {...register("password", {
-                    required: "Password is required",
-                    minLength: { value: 6, message: "Password must be at least 6 characters" }
-                  })}
-                />
+                <div className="mt-1 relative">
+                  <input
+                    type={isPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="••••••••"
+                    {...register("password", {
+                      required: "Password is required",
+                      minLength: { value: 6, message: "Password must be at least 6 characters" }
+                    })}
+                  />
+                  <button
+                    className="absolute inset-y-0 end-0 flex items-center z-20 px-2.5 cursor-pointer text-gray-500 rounded-e-md focus:outline-none focus-visible:text-orange-600 hover:text-orange-600 transition-colors"
+                    type="button"
+                    onClick={toggleisPassword}
+                    aria-label={isPassword ? "Hide password" : "Show password"}
+                    aria-pressed={isPassword}
+                    aria-controls="password"
+                  >
+                    {isPassword ? (
+                      <EyeOff size={20} aria-hidden="true" />
+                    ) : (
+                      <Eye size={20} aria-hidden="true" />
+                    )}
+                  </button>
+                </div>
                 {errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
               </div>
               <div className="flex items-center justify-between">
@@ -93,7 +118,7 @@ export default function SignIn() {
                     <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                   </div>
                 </div>
-                <Link href="#" className="text-sm font-medium text-orange-600 hover:underline dark:text-orange-500">Forgot password?</Link>
+                <Link href="/forgot_password" className="text-xs sm:text-sm font-medium text-orange-600 hover:underline dark:text-orange-500">Forgot password?</Link>
               </div>
               {errors.remember && <p className="text-red-500 text-xs">{errors.remember.message}</p>}
               <button
@@ -103,7 +128,7 @@ export default function SignIn() {
                 Sign in
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Don’t have an account yet? <Link href="/register" className="font-medium text-orange-600 hover:underline dark:text-orange-500">Sign up</Link>
+                Don’t have an account yet? <Link href="/create_your_account" className="font-medium text-orange-600 hover:underline dark:text-orange-500">Sign up</Link>
               </p>
             </form>
           </div>
