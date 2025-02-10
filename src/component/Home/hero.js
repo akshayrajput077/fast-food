@@ -1,22 +1,28 @@
-
+"use client"
+import { useEffect } from "react";
 import React from "react";
-import img from '../../../public/img.jpg'
+import img from '../../../public/background.jpg'
 import Image from "next/image";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Hero() {
+  useEffect(() => {
+    AOS.init({})
+    return () => {
+      AOS.refresh();
+    };
+  }, [])
   return (
-    <div className="  mx-auto p-4 ">
-      <div className=" max-h-[500px] relative ">
-        <div className=" absolute w-full h-full text-gray-200 max-h-[500px] bg-black/40 flex flex-col justify-center ">
-          <h1 className=" px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold ">
-            The <span className=" text-orange-500  ">Best</span>
-          </h1>
-          <h1 className=" px-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold ">
-            <span className=" text-orange-500  ">Foods</span> Delivered
+    <div className="mx-auto">
+      <div className="max-h-[640px] relative">
+        <div className=" absolute w-full h-full text-white max-h-[640px] flex flex-col justify-center" data-aos="fade-right" data-aos-duration="3000">
+          <h1 className=" px-4 text-4xl text-2xl sm:text-7xl font-bold text-center">
+            The <span className=" text-orange-500">Best</span> Foods
           </h1>
         </div>
         <Image
-          className=" w-full max-h-[500px] object-cover "
+          className=" w-full max-h-[640px] object-cover "
           src={img}
           alt="Picture of burger"
         />

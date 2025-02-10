@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from "react";
-import { data } from "../Data/data.js";
+import { data } from "@/component/Common/data.js"
 import Image from "next/image.js";
 import Button from "../button/button.js"
 import Link from "next/link.js";
@@ -112,10 +112,10 @@ function Food() {
                 alt={item.name}
                 className=" w-full h-[200px] object-cover rounded-t-lg "
               />
-              <div className=" flex justify-between px-2 py-4 ">
-                <p className=" font-bold "> {item.name} </p>
+              <div className="flex justify-between px-2 py-4 ">
+                <p className="font-bold text-xs sm:text-sm"> {item.name} </p>
                 <p>
-                  <span className=" bg-orange-500 text-white p-1 rounded-full ">
+                  <span className=" bg-orange-500 text-white p-1 rounded-full text-xs sm:text-sm">
                     {item.price}
                   </span>
                 </p>

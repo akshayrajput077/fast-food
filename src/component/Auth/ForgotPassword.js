@@ -235,7 +235,7 @@ const ForgotPassword = () => {
     <section
       className="bg-gray-50 text-center"
       style={{
-        backgroundImage: `url('/eg.jpg')`,
+        backgroundImage: `url('/background.jpg')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: 'auto',

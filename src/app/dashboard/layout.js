@@ -1,7 +1,7 @@
 import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/component/Navbar/navbar";
-
+import Footer from "@/component/Footer/footer";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -29,6 +29,7 @@ export default function RootLayout({ children }) {
       )}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

@@ -1,13 +1,22 @@
 
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { loginUser } from '@/services/auth/signIn.service';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 export default function SignIn() {
+
+  useEffect(() => {
+    AOS.init({})
+    return () => {
+      AOS.refresh();
+    };
+  }, [])
+
   const [error, setError] = useState('');
   const router = useRouter();
   const [isPassword, setIsPassword] = useState(false);
@@ -32,13 +41,13 @@ export default function SignIn() {
   };
 
   return (
-    <section className="bg-gray-50 text-center relative" style={{
-      backgroundImage: `url('/eg.jpg')`,
+    <section className="text-center relative" style={{
+      backgroundImage: `url('/background.jpg')`,
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       height: 'auto',
     }}>
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0 relative">
+      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen sm:h-screen lg:py-0 relative">
         {error && <div className="fixed top-0 left-end right-0">
           <div className="flex items-center p-4 mb-4 text-sm text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
             <svg className="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

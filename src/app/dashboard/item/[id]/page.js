@@ -1,4 +1,5 @@
-import { data } from '../../../../component/Data/data'; // Import your data
+
+import { data } from '@/component/Common/data';// Import your data
 import SingleItem from '@/component/Singleitem/singleitem'; // Import the SingleItem component
 
 export default async function ItemPage({ params }) {

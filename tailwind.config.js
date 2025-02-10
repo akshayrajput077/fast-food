@@ -15,6 +15,9 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: () => ({
+        pedigrey: "#E7E7E7",
+      }),
     },
     // screens: {
     //   'sm': { 'min': '640px', 'max': '767px' },

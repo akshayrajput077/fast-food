@@ -15,9 +15,9 @@ const SingleItem = ({ item }) => {
   };
 
   return (
-    <div className="m-auto px-4 py-12">
+    <div className="m-auto px-4 py-20 bg-pedigrey">
       <h1 className="text-orange-600 font-bold text-4xl text-center">{item.name}</h1>
-      <div className="flex justify-center pt-6">
+      <div className="flex justify-center py-4">
         {/* Uncomment if you want to show the image */}
         <img
           src={item.image}
