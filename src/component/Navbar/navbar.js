@@ -14,7 +14,7 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState(null); // State to track active link
   const pathname = usePathname();
   const router = useRouter()
-  const links = ['/', 'about', 'shop', 'blog', "contact"];
+  const links = ['/', 'about', 'shop', 'blog'];
 
   const toggle = () => {
     setClick(!click);
@@ -22,6 +22,7 @@ const Navbar = () => {
 
   const logout = () => {
     localStorage.clear();
+    console.log("localStorage", localStorage.clear())
     router.push('/')
   };
 
@@ -63,25 +64,24 @@ const Navbar = () => {
               <Link
                 onClick={toggle}
                 key={item}
-                href={item === '/dashboard' ? '/dashboard' : `/dashboard/${item}`}
-                className={`mr-5 capitalize ${pathname === `/dashboard${item}` || pathname === `/dashboard${item}` ? 'text-orange font-semibold ' : ''} hover:text-orange-600 transition-all duration-300 ease-in-out px-6 py-2 mx-4`}
+                href={item === '/' ? '/' : `${item}`}
+                className={`mr-5 capitalize ${pathname === `/${item}` || pathname === `${item}` ? 'text-orange-600 font-semibold ' : ''} hover:text-orange-600 transition-all duration-300 ease-in-out px-6 py-2 mx-4`}
               >
                 {item === '/' ? 'home' : item}
               </Link>
             ))}
             <button onClick={toggle} className="block items-center text-orange-600 hover:text-white border border-orange-600 hover:bg-orange-600 outline-none focus:bg-orange-600 focus:text-white font-medium rounded-lg text-sm py-1 text-center me-2 mb-2 dark:border-orange-600 dark:text-orange-600 dark:hover:text-white dark:hover:bg-orange-600 dark:focus:bg-orange-600 mt-4 md:mt-0" onClickCapture={logout}>
-              Logout
+              CONTACT
             </button>
           </nav>
         )}
-        <nav className={`md:ml-auto md:mr-auto md:flex lg:ml-auto lg:mr-auto lg:flex xl:ml-auto xl:mr-auto xl:flex flex-wrap items-center justify-center md:gap-4 lg:gap-8 xl-gap-16 hidden md:m-5 m-0 text-lg font-bold ${shadow ? 'md:text-sm lg:text-base xl:text-base xl:gap-2 lg:gap-2 md:gap-2 md-m-2' : ''}`}>
+        <nav className={`md:ml-auto md:mr-auto md:flex lg:ml-auto lg:mr-auto lg:flex xl:ml-auto xl:mr-auto xl:flex flex-wrap items-center justify-center md:gap-4 lg:gap-8 xl-gap-16 hidden md:m-5 m-0 text-lg font-bold ${shadow ? 'md:text-sm lg:text-base xl:text-base xl:gap-2 lg:gap-2 md:gap-2 md-m-2' : 'text-center px-8 border-solid rounded-xl border-2 border-orange-600 bg-white'}`}>
           {links.map((item) => (
             <Link
-              onClick={() => console.log('item', pathname)}
               key={item}
-              href={item === '/' ? '/dashboard' : `/dashboard/${item}`}
-              className={`xl:mr-16 lg:mr-8 md:mr-2 uppercase font-mono  ${pathname === `/dashboard/${item}` || pathname === `/dashboard${item}` ?
-                'text-orange-600' : 'text-white'} block transition-all duration-300 ease-in-out hover:text-orange-600`}
+              href={item === '/' ? '/' : `${item}`}
+              className={`xl:mr-16 lg:mr-8 md:mr-2 uppercase font-mono  ${pathname === `/${item}` || pathname === `${item}` ?
+                'text-orange-600' : 'text-gray-800'} block transition-all duration-300 ease-in-out hover:text-orange-600`}
             >
               {item === '/' ? 'home' : item}
             </Link>

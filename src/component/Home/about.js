@@ -2,6 +2,8 @@
 import React from "react"
 import { Apple } from 'lucide-react';
 import { ChefHat } from 'lucide-react';
+import rusu_pizza from '../../../public/rusu_pizza.png'
+import Image from "next/image";
 function About() {
 
   return (
@@ -10,7 +12,7 @@ function About() {
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6" data-aos="fade-up"
           data-aos-duration="3000"
         >
-          <img className="object-cover object-center h-[250px] sm:h-[750px] rounded" alt="hero" src="rusu_pizza.png" />
+          <Image className="object-cover object-center h-[250px] sm:h-[750px] rounded" src={rusu_pizza} alt="rusu_pizza" />
         </div>
         <div className="sm:flex-grow md:w-1/2 sm:pl-24 pl-4 flex flex-col md:items-start md:text-left items-start text-start mb-12" data-aos="fade-down"
           data-aos-duration="3000">

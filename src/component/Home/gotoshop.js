@@ -17,12 +17,12 @@ export default function GotoShop() {
           </h1>
 
           <div className="flex md:justify-start sm:justify-center mt-5">
-            <Link href="/dashboard/shop">
+            <Link href="/shop">
               <Button>Shop Now</Button>
             </Link>
           </div>
         </div>
-        <div className="flex items-center mx-auto" data-aos="fade-right" data-aos-duration="3000">
+        <div className="flex items-center mx-auto" data-aos="fade-up" data-aos-duration="3000">
           <Image
             className=" w-full max-h-full object-cover "
             src={img}

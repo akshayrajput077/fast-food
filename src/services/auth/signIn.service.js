@@ -11,3 +11,13 @@ export async function loginUser(email, password) {
   return user;
 }
 
+export async function localData() {
+  const userData = localStorage.getItem('user');
+  if (userData) {
+    const users = JSON.parse(userData);
+    return users;
+  } else {
+    console.log("No user data found in localStorage");
+    return null;
+  }
+}

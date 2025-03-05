@@ -86,11 +86,6 @@ const ForgotPassword = () => {
       const response = await user_forgotPassword({ emailId });
       console.log("response data:", response.email);
       response.email.length > 0 ? nextStep() : console.log(response.message || 'Something went wrong');
-      // if (response.email) {
-      //   nextStep();
-      // } else {
-      //   console.log(response.message || 'Something went wrong');
-      // }
     } catch (err) {
       console.log('Error requesting OTP');
       console.error(err);
@@ -106,7 +101,7 @@ const ForgotPassword = () => {
     try {
       const response = await resetPassword({ otp: otp.join(''), password });
       if (response.status === 200) {
-        router.push('/');
+        router.push('/shop');
       } else {
         console.log(response.message);
       }
@@ -130,8 +125,6 @@ const ForgotPassword = () => {
                 onChange={handleEmailChange}
                 className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               />
-              {/* {error && <p className="error">{error}</p>} */}
-
             </div>
             <div className="mt-2 flex justify-end">
               <Button onClick={requestOtp}>Send OTP</Button>
@@ -232,23 +225,17 @@ const ForgotPassword = () => {
   };
 
   return (
-    <section
-      className="bg-gray-50 text-center"
-      style={{
-        backgroundImage: `url('/background.jpg')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        height: 'auto',
-      }}
+    <div
+      className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center"
     >
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen sm:h-screen lg:py-0 sm:py-12">
-        <div className="w-full h-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-          <div className="mx-auto mt-2 bg-white p-3 rounded-lg shadow-lg">
-            {renderStepContent()}
-          </div>
-        </div>
+      {/* <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen sm:h-screen lg:py-0 sm:py-12">
+        <div className="w-full h-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"> */}
+      <div className="mx-auto mt-2 w-[300px] sm:w-[400px] bg-white p-3 rounded-lg shadow-lg">
+        {renderStepContent()}
       </div>
-    </section >
+      {/* </div>
+      </div> */}
+    </ div>
   );
 };
 

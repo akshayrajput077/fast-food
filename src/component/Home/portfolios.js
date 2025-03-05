@@ -17,7 +17,7 @@ function Portfolios() {
           <div className="flex flex-wrap w-1/2">
 
             <div className="md:p-2 p-1 md:w-1/2 w-2/2 relative">
-              <Link href="/dashboard/shop">
+              <Link href="/shop">
                 <img alt="gallery" className="w-full object-cover h-full object-center block" src="big-cheeseburger.jpg" />
                 <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-500 m-4 md:m-8">
                   <div className="absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2  md:m-0">
@@ -42,7 +42,7 @@ function Portfolios() {
               </Link>
             </div>
             <div className="md:p-2 p-1 md:w-1/2 w-2/2 relative">
-              <Link href='/dashboard/shop'>
+              <Link href='/shop'>
                 <img alt="gallery" className="w-full object-cover h-full object-center block" src="club-sandwich.jpg" />
                 <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-500 m-3 md:m-8" data-aos="hover:zoom-in" data-aos-duration='1500'>
                   <div className="absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2 md:m-0">
@@ -67,7 +67,7 @@ function Portfolios() {
               </Link>
             </div>
             <div className="md:p-2 p-1 md:w-full w-2/2  relative">
-              <Link href='/dashboard/shop'>
+              <Link href='/shop'>
                 <img alt="gallery" className="w-full h-full object-cover object-center block" src="sahal-pizza.jpg" />
                 <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-500 m-4 md:m-8" data-aos="hover:zoom-in" data-aos-duration='1500'>
                   <div className="absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2  md:m-0">
@@ -96,7 +96,7 @@ function Portfolios() {
           </div>
           <div className="flex flex-wrap w-1/2">
             <div className="md:p-2 p-1 md:w-full w-2/2 relative">
-              <Link href='/dashboard/shop'>
+              <Link href='/shop'>
                 <img alt="gallery" className="w-full h-full object-cover object-center block" src="momos.jpg" />
                 <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-500 m-4 md:m-8" data-aos="hover:zoom-in" data-aos-duration='1500'>
                   <div className="absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2  md:m-0">
@@ -123,7 +123,7 @@ function Portfolios() {
               </Link>
             </div>
             <div className="md:p-2 p-1 md:w-1/2 w-2/2 relative">
-              <Link href='/dashboard/shop'>
+              <Link href='/shop'>
                 <img alt="gallery" className="w-full object-cover h-full object-center block" src="spring-rolls.jpg" />
                 <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-500 m-4 md:m-8" data-aos="hover:zoom-in" data-aos-duration='1500'>
                   <div className="absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2  md:m-0">
@@ -150,7 +150,7 @@ function Portfolios() {
               </Link>
             </div>
             <div className="md:p-2 p-1 md:w-1/2 w-2/2 relative">
-              <Link href='/dashboard/shop'>
+              <Link href='/shop'>
                 <img alt="gallery" className="w-full object-cover h-full object-center block" src="soft-drink.jpg" />
                 <div className="absolute inset-0 bg-black opacity-0 hover:opacity-50 transition-opacity duration-500 m-3 md:m-8" data-aos="hover:zoom-in" data-aos-duration='1500'>
                   <div className="absolute -translate-y-1/2 -translate-x-1/2 top-2/4 left-1/2  md:m-0">
