@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { Eye, EyeOff } from "lucide-react";
 
 
-export default function Register() {
+export default function Register({ onClose }) {
   const [showModal, setShowModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [emailId, setEmailId] = useState("")
@@ -48,6 +48,9 @@ export default function Register() {
     }
   };
 
+  const closeOtpModal = () => {
+    setShowModal(false);
+  }
 
   return (
     <>
@@ -289,7 +292,7 @@ export default function Register() {
             </button>
           </form>
         </div>
-        {showModal && <OTP emailId={emailId} />}
+        {showModal && <OTP emailId={emailId} onVerificationSuccess={closeOtpModal} onClose={onClose} />}
       </div>
     </>
   );

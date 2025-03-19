@@ -3,7 +3,7 @@ import PageTitle from "@/component/Common/pageTitle"
 export default function Menu() {
   return (
     <>
-      {/* <PageTitle title="Shop" /> */}
+      <PageTitle title="Shop" />
       <Food />
     </>
   )

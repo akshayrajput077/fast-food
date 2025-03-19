@@ -8,7 +8,10 @@ export default function GotoShop() {
   return (
     <section className="text-gray-600 bg-pedigrey body-font">
       <div className="container px-5 py-16 mx-auto flex items-center md:flex-row flex-col">
-        <div className="flex flex-col md:pr-10 md:mb-0 mb-6 pr-0 w-full md:w-auto md:text-left text-center" data-aos="fade-left" data-aos-duration="3000">
+        <div className="flex flex-col md:pr-10 md:mb-0 mb-6 pr-0 w-full md:w-auto md:text-left text-center static" data-aos="fade-up" data-aos-duration="3000">
+          <div className="absolute top-0 right-0 animate-bounce">
+            <img alt="snacks" className="w-[58px] object-cover h-[51px] object-center block" src="Beverages.jpeg" />
+          </div>
           <h1 className="text-orange-600 text-sm font-medium mt-5">
             CHOOSE FOOD
           </h1>
@@ -22,12 +25,17 @@ export default function GotoShop() {
             </Link>
           </div>
         </div>
-        <div className="flex items-center mx-auto" data-aos="fade-up" data-aos-duration="3000">
+        <div className="flex items-center mx-auto static" data-aos="fade-up" data-aos-duration="3000">
           <Image
-            className=" w-full max-h-full object-cover "
+            role="button"
+            className="w-full max-h-full object-cover hover:animate-shake"
             src={img}
             alt="Picture of burger"
           />
+          <div className="absolute bottom-0 right-0 animate-bounce">
+            <img alt="snacks" className="w-[58px] object-cover h-[51px] object-center block" src="snacks.jpeg" />
+          </div>
+
         </div>
       </div>
     </section>

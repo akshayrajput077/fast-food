@@ -11,7 +11,6 @@ import 'aos/dist/aos.css';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
 export default function SignIn({ onClose }) {
-
   useEffect(() => {
     AOS.init({})
     return () => {
@@ -27,14 +26,15 @@ export default function SignIn({ onClose }) {
   const [registerModalOpen, setRegisterInModalOpen] = useState(false);
   const [forgotModalOpen, setForgotInModalOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(true);
+
   const handleLogin = async (data) => {
     try {
       const { email, password } = data;
       const user = await loginUser(email, password);
       if (user) {
         localStorage.setItem('user', JSON.stringify(user));
-        // router.push('/shop');
-        onClose()
+        onClose();
+        window.location.reload();
       } else {
         setError('Something went wrong');
         setTimeout(() => {
@@ -68,7 +68,7 @@ export default function SignIn({ onClose }) {
 
   return (
     <>
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center">
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-40">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen sm:h-screen lg:py-0 relative">
           {loginModalOpen && (
             <div className="p-6 rounded-lg w-[300px] sm:w-[400px] space-y-4 bg-white md:space-y-6 sm:p-8">
@@ -165,6 +165,7 @@ export default function SignIn({ onClose }) {
         {registerModalOpen && (
           <Register onClose={closeRegisterModal} />
         )}
+
         {forgotModalOpen && (
           <ForgotPassword onClose={closeForgotModal} />
         )}

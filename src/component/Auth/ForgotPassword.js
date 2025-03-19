@@ -7,14 +7,13 @@ import { user_forgotPassword } from '@/services/auth/register.service';
 import { resetPassword } from '@/services/auth/register.service';
 import { Eye, EyeOff } from "lucide-react";
 
-const ForgotPassword = () => {
+const ForgotPassword = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(0);
   const [emailId, setEmailId] = useState('');
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputRefs = useRef([]); // Array for 6-digit OTP input
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-
   const [isPassword, setIsPassword] = useState(false);
   const [isConfirm, setIsConfirm] = useState(false);
   const toggleisPassword = () => setIsPassword(prevState => !prevState);
@@ -101,7 +100,9 @@ const ForgotPassword = () => {
     try {
       const response = await resetPassword({ otp: otp.join(''), password });
       if (response.status === 200) {
-        router.push('/shop');
+        // router.push('/shop');
+        // handleSignInopen()
+        onClose()
       } else {
         console.log(response.message);
       }
@@ -228,13 +229,9 @@ const ForgotPassword = () => {
     <div
       className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center"
     >
-      {/* <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen sm:h-screen lg:py-0 sm:py-12">
-        <div className="w-full h-auto bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"> */}
       <div className="mx-auto mt-2 w-[300px] sm:w-[400px] bg-white p-3 rounded-lg shadow-lg">
         {renderStepContent()}
       </div>
-      {/* </div>
-      </div> */}
     </ div>
   );
 };

@@ -4,7 +4,7 @@ import About from "@/component/Home/about";
 export default function AboutUs() {
   return (
     <>
-      {/* <PageTitle title="About Us" /> */}
+      <PageTitle title="About Us" />
       <About />
     </>
   )

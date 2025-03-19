@@ -38,6 +38,8 @@ import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/component/Navbar/navbar";
 import Footer from "@/component/Footer/footer";
+import { Suspense } from "react";
+import Loading from "./loading";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
@@ -65,7 +67,9 @@ export default function RootLayout({ children }) {
           "font-mr bg-light"
         )}>
           <Navbar />
-          {children}
+          <Suspense fallback={<Loading />}>
+            {children}
+          </Suspense>
           <Footer />
         </main>
       </body>

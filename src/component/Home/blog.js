@@ -1,5 +1,6 @@
 "use client"
 import React from "react"
+import Link from "next/link";
 export default function Blog() {
   const blogPosts = [
     {
@@ -7,31 +8,32 @@ export default function Blog() {
       category: "CATEGORY",
       title: "Culinary Chronicles Exploring Gastronomic Wonders at",
       image: "spring-rolls.jpg",
-      // link: "#"
+      link: "blog"
     },
     {
       id: 2,
       category: "CATEGORY",
       title: "Culinary Chronicles Exploring Gastronomic Wonders at",
       image: "big-cheeseburger.jpg",
-      // link: "#"
+      link: "blog"
     },
     {
       id: 3,
       category: "CATEGORY",
       title: "Culinary Chronicles Exploring Gastronomic Wonders at",
       image: "club-sandwich.jpg",
-      // link: "#"
+      link: "blog"
     }
   ];
 
   return (
     <section className="text-gray-600 body-font m-8" data-aos="fade-down" id="blog">
       <div className="container px-5 py-4 mx-auto" >
-        <h1 className="text-orange-600 text-sm font-medium mb-8 font-sans">BLOG</h1>
-        <div className="flex w-full mb-12 flex-wrap">
-          <h1 className="sm:text-4xl text-4xl font-extrabold title-font text-gray-900 lg:w-3/6 lg:mb-0 mb-4">READ LATEST ARTICLES</h1>
-          <p className="lg:pl-6 lg:w-3/6 mx-auto leading-relaxed text-base text-gray-900">Welcome too restaurant, where culinary excellence hospitality in every dish we serve. Nestled in the heart of City Name our eatery invites you on a journey</p>
+        <div className="flex flex-col text-center w-full mb-20" data-aos="fade-up" data-aos-duration="3000">
+          <h1 className="text-orange-600 text-sm font-medium mb-4">BLOG</h1>
+          <h1 className="title-font sm:text-4xl text-xl font-extrabold mb-4 text-gray-900 mt-3">WE PROVIDE AMAZING & QUALITY FOOD FOR
+            <br className="hidden lg:inline-block" />YOUR GOOD HEALTH
+          </h1>
         </div>
         <div className="flex flex-wrap -m-4">
 
@@ -42,12 +44,12 @@ export default function Blog() {
                 <div className="p-8">
                   <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">{post.category}</h2>
                   <h1 className="title-font xl:text-xl lg:text-lg md:text-sm text-base font-bold text-black mb-3">{post.title}</h1>
-                  <a href={post.link} className="text-black inline-flex items-center md:mb-2 lg:mb-0 fond-extrabold text-sm duration-300 hover:translate-x-2">Know More
+                  <Link href={post.link} className="text-black inline-flex items-center md:mb-2 lg:mb-0 fond-extrabold text-sm duration-300 hover:translate-x-2">Know More
                     <svg className="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M5 12h14"></path>
                       <path d="M12 5l7 7-7 7"></path>
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

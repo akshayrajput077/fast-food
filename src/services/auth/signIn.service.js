@@ -12,12 +12,24 @@ export async function loginUser(email, password) {
 }
 
 export async function localData() {
-  const userData = localStorage.getItem('user');
-  if (userData) {
-    const users = JSON.parse(userData);
-    return users;
-  } else {
-    console.log("No user data found in localStorage");
-    return null;
+  if (typeof window !== "undefined") {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const users = JSON.parse(userData);
+      return users;
+    } else {
+      console.log("No user data found in localStorage");
+      return null;
+    }
   }
 }
+
+// export const getDataFromLocalStorage = () => {
+//   if (typeof window !== "undefined") {
+//     const storedData = localStorage.getItem("user");
+//     if (storedData) {
+//       return JSON.parse(storedData);
+//     }
+//   }
+//   return null;
+// };

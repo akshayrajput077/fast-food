@@ -5,7 +5,7 @@ import { verifyOtp } from '@/services/auth/register.service';
 import { useRouter } from 'next/navigation';
 import { resendOtp } from '@/services/auth/register.service';
 
-export default function OTP({ emailId, onClose }) {
+export default function OTP({ emailId, onVerificationSuccess, onClose }) {
   const [otp, setOtp] = useState(Array(6).fill(""));
   const inputRefs = useRef([]);
   const [timer, setTimer] = useState(30); // Timer in seconds
@@ -69,13 +69,15 @@ export default function OTP({ emailId, onClose }) {
     try {
       const user = await verifyOtp({ emailId, otp: otpCode });
       if (user.data && user.data.email) {
-        router.push('/shop');
+        console.log('user', user.data && user.data.email)
+        // router.push('/shop');
+        onVerificationSuccess();
         onClose();
       } else {
         console.log('OTP verification failed. Please try again.');
       }
     } catch (error) {
-      console.error('Error verifying OTP:', error.response.data.errors);
+      console.error('Error verifying OTP:', error.response?.data || error);
     }
   };
 
