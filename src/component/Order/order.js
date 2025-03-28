@@ -67,9 +67,7 @@ function Order() {
           payment_id: payment_id,
         };
         console.log("orderData", orderData);
-        // <Alert />
         setAlert(user.FirstName);
-        // router.push('/record')
         setPaymentSuccess(false);
         clearOrderData();
         try {
