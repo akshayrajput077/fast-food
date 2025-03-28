@@ -5,7 +5,7 @@ import Button from '../button/button';
 import { useRouter } from 'next/navigation';// Your custom button component
 import { user_forgotPassword } from '@/services/auth/register.service';
 import { resetPassword } from '@/services/auth/register.service';
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, CircleChevronLeft } from "lucide-react";
 
 const ForgotPassword = ({ onClose }) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -100,8 +100,6 @@ const ForgotPassword = ({ onClose }) => {
     try {
       const response = await resetPassword({ otp: otp.join(''), password });
       if (response.status === 200) {
-        // router.push('/shop');
-        // handleSignInopen()
         onClose()
       } else {
         console.log(response.message);
@@ -117,8 +115,16 @@ const ForgotPassword = ({ onClose }) => {
         return (
           <div>
             <div className="bg-white p-4 max-w-md w-full">
-              <h2 className="text-xl font-bold text-center text-orange-600 mb-4">Your Email</h2>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 text-start">Email</label>
+              <div className='flex justify-between items-center'>
+                <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-600 md:text-2xl dark:text-white">
+                  Your Email
+                </h1>
+                <div>
+                  <CircleChevronLeft role="button" className="text-orange-600" size={24} onClick={() => onClose()} />
+                </div>
+              </div>
+              {/* <h2 className="text-xl font-bold text-center text-orange-600 mb-4">Your Email</h2> */}
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 text-start mt-2">Email</label>
               <input
                 type="email"
                 placeholder="Email Address"

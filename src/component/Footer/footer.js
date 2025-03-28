@@ -1,6 +1,8 @@
 
 import React from "react"
 import data from "../Common/commonData"
+import Link from "next/link";
+import { ChefHat } from 'lucide-react';
 export default function Footer() {
   return (
     <footer className="bg-black font-sans">
@@ -8,11 +10,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div>
             <div className="flex justify-center text-orange sm:justify-start">
-
-              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-globe text-orange-600" viewBox="0 0 16 16">
-                <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m7.5-6.923c-.67.204-1.335.82-1.887 1.855A8 8 0 0 0 5.145 4H7.5zM4.09 4a9.3 9.3 0 0 1 .64-1.539 7 7 0 0 1 .597-.933A7.03 7.03 0 0 0 2.255 4zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a7 7 0 0 0-.656 2.5zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5zM8.5 5v2.5h2.99a12.5 12.5 0 0 0-.337-2.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5zM5.145 12q.208.58.468 1.068c.552 1.035 1.218 1.65 1.887 1.855V12zm.182 2.472a7 7 0 0 1-.597-.933A9.3 9.3 0 0 1 4.09 12H2.255a7 7 0 0 0 3.072 2.472M3.82 11a13.7 13.7 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5zm6.853 3.472A7 7 0 0 0 13.745 12H11.91a9.3 9.3 0 0 1-.64 1.539 7 7 0 0 1-.597.933M8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855q.26-.487.468-1.068zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.7 13.7 0 0 1-.312 2.5m2.802-3.5a7 7 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7 7 0 0 0-3.072-2.472c.218.284.418.598.597.933M10.855 4a8 8 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4z" />
-              </svg>
-
+              <ChefHat size={40} className="text-orange-600 hover:text-orange-600" />
             </div>
 
             <p className="mt-6 max-w-md text-center text-white leading-relaxed  sm:max-w-xs sm:text-left font-bold">
@@ -116,45 +114,36 @@ export default function Footer() {
 
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
-                  <a className="text-white font-bold transition hover:text-orange-600" href="#">
+                  <Link className="text-white font-bold transition hover:text-orange-600" href="/shop">
                     Burger
-                  </a>
+                  </Link>
                 </li>
 
                 <li>
-                  <a className="text-white font-bold transition hover:text-orange-600" href="#">
+                  <Link className="text-white font-bold transition hover:text-orange-600" href="/shop">
                     Pizza
-                  </a>
+                  </Link>
                 </li>
 
-                <li>
-                  <a className="text-white font-bold transition hover:text-orange-600" href="#">
-                    Spring rolls
-                  </a>
-                </li>
-
-                <li>
-                  <a className="text-white font-bold transition hover:text-orange-600" href="#">Momos</a>
-                </li>
               </ul>
             </div>
 
             <div className="text-center sm:text-left">
-              <p className="text-xl font-bold text-orange-600">MOCKTAIL</p>
+              <p className="text-xl font-bold text-orange-600 uppercase">Beverages</p>
 
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
-                  <a className="text-white font-bold transition hover:text-orange-600" href="#">
-                    Pine apple
-                  </a>
+                  <Link className="text-white font-bold transition hover:text-orange-600" href="/shop">
+                    Fanta
+                  </Link>
                 </li>
 
                 <li>
-                  <a className="text-white font-bold transition hover:text-orange-600" href="#">Strawberry</a>
+                  <Link className="text-white font-bold transition hover:text-orange-600" href="/shop">Sprite</Link>
                 </li>
 
                 <li>
-                  <a className="text-white font-bold transition hover:text-orange-600" href="#">Fruit Beer</a>
+                  <Link className="text-white font-bold transition hover:text-orange-600" href="/shop">Coca Cola</Link>
                 </li>
               </ul>
             </div>
@@ -219,7 +208,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-gray-900 pt-6">
+        <div className="mt-12 border-t border-white pt-6">
           <div className="text-center sm:flex sm:justify-between sm:text-left font-bold">
             <p className="text-sm text-white">
               <span className="block sm:inline">All rights reserved.</span>

@@ -36,6 +36,8 @@ function Hero() {
 
         </div>
         <img
+          width={500}
+          height={500}
           className="w-full max-h-[640px] object-cover "
           src="backgroundss.jpg"
           alt="Picture of burger"

@@ -7,7 +7,7 @@ export default function Whyus() {
       <div className="container px-5 py-24 mx-auto">
         <div className="flex flex-col text-center w-full mb-20" data-aos="fade-up" data-aos-duration="3000">
           <h1 className="text-orange-600 text-sm font-medium mb-4">POPULAR FOOD CATEGORY</h1>
-          <h1 className="title-font sm:text-4xl text-xl font-extrabold mb-4 text-gray-900 mt-3">WE PROVIDE AMAZING & QUALITY FOOD FOR
+          <h1 className="title-font xl:text-4xl lg:text-2xl md:text-xl sm:text-xl font-extrabold mb-4 text-gray-900 mt-3">WE PROVIDE AMAZING & QUALITY FOOD FOR
             <br className="hidden lg:inline-block" />YOUR GOOD HEALTH
           </h1>
         </div>

@@ -201,17 +201,17 @@ function Food() {
 
       <div className="container px-5 mx-auto flex sm:flex-nowrap flex-wrap">
 
-        <div className="lg:w-2/3 md:w-1/2 sm:mr-10 mt-8 flex items-end justify-start relative">
+        <div className="lg:w-2/3 md:w-1/2 sm:mr-10 mt-8 h-fit flex items-end justify-start relative">
           <div className="absolute top-0 left-0">
             {activeCategory && (
               <div className="font-bold text-3xl uppercase">{activeCategory}</div>
             )}
           </div>
-          <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 pt-12">
-            {foods.length === 0 ? (
-              <p className="text-xl font-semibold text-center w-full py-10">No items available in this category</p>
-            ) : (
-              foods.map((item, index) => (
+          {foods.length === 0 ? (
+            <p className="text-xl font-semibold text-center w-full py-12">No items available in this category</p>
+          ) : (
+            <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 pt-12">
+              {foods.map((item, index) => (
                 <div
                   key={index}
                   role="button"
@@ -238,9 +238,9 @@ function Food() {
                   </div>
 
                 </div>
-              ))
-            )}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
         <div className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
           {cart.length > 0 && (
@@ -267,7 +267,7 @@ function Food() {
                             value={item.quantity}
                             max="35"
                             min='1'
-                            className="sm:h-10 sm:w-16 h-3 w-4 sm:text-sm text-orange-600 text-xs border-transparent text-center"
+                            className="sm:h-10 sm:w-16 h-3 w-4 sm:text-sm text-orange-600 text-sm border-transparent text-center"
                             onChange={(e) => {
                               let newQuantity = parseInt(e.target.value, 10);
                               if (newQuantity > 25) newQuantity = 25;

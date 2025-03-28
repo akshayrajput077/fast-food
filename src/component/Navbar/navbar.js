@@ -10,7 +10,7 @@ import { useRouter } from 'next/navigation';
 import { LogOut, UserRound, ShoppingBag, Archive } from 'lucide-react';
 import { localData } from '@/services/auth/signIn.service';
 import SignIn from '../Auth/Signin';
-
+import BrowserStorageService from '@/services/localStroage/BrowserStorageService';
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [shadow, setShadow] = useState(false);
@@ -21,26 +21,14 @@ const Navbar = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);  // Initially set to false
   const [user, setUser] = useState(null);
 
-
-  useEffect(() => {
-    handleUser()
-  }, []);
-
-  const handleUser = async () => {
-    const user = await localData();
-    console.log("user", user)
-    if (user) {
-      setUser(user);
-    }
-  };
-
   const handleLoginClick = () => {
     setShowLoginModal(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseModal = (data) => {
+    console.log("data", data)
     setShowLoginModal(false);
-    router.push('/');
+    setUser(data)
   };
 
   const handleMouseEnter = () => {
@@ -58,35 +46,32 @@ const Navbar = () => {
   };
 
   const logout = () => {
-    localStorage.clear();
+    BrowserStorageService.clear();
     window.location.reload();
-    // router.push('/');
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isTop = window.scrollY > 50;
-      if (isTop !== shadow) {
-        setShadow(isTop);
+    window.onscroll = function () {
+      if (window.scrollY > 50) {
+        setShadow(true);
+      } else {
+        setShadow(false);
       }
-
-      const sections = document.querySelectorAll('section[id]');
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        const sectionHeight = section.clientHeight;
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-          setActiveLink(`#${section.getAttribute('id')}`);
-        }
-      });
     };
+  }, []);
 
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [shadow]);
+  useEffect(() => {
+    const data = BrowserStorageService.get('User');
+    if (data) {
+      setUser(JSON.parse(data));
+    }
 
-
+    window.addEventListener('storage', () => {
+      const updatedData = BrowserStorageService.get('User');
+      setUser(JSON.parse(updatedData));
+    });
+    return () => window.removeEventListener('storage', () => { });
+  }, []);
 
   return (
     <>
@@ -110,9 +95,34 @@ const Navbar = () => {
                   {item === '/' ? 'home' : item}
                 </Link>
               ))}
-              <button onClick={toggle} className="block text-start hove:text-orange-600 transition-all duration-300 ease-in-out px-6 py-2 mx-4 flex items-center" onClickCapture={logout}>
-                Logout <LogOut className='px-1' size={24} />
-              </button>
+              {user ? (
+                <div
+                  role="button"
+                  className="block text-start hove:text-orange-600 transition-all duration-300 ease-in-out px-2 py-2 mx-8 flex items-center bg-orange-600 text-white rounded-full w-10 h-10"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  {user.FirstName ? user.FirstName[0].toUpperCase() : null}
+                  {user.LastName ? user.LastName[0].toUpperCase() : null}
+                  {isDropdownVisible && (
+                    <div className="absolute left-4 z-10 top-52 mt-2 w-36 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden">
+                      <div className="py-1" role="none">
+                        <Link href={'/order'}>
+                          <div role='button' onClick={toggle} className="block flex items-center px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-orange-600 hover:rounded-lg hover:text-white text-left"><ShoppingBag className='px-1 font-semibold' size={24} />Cart</div>
+                        </Link>
+                        <Link href={'/record'}>
+                          <div role='button' onClick={toggle} className="block flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-orange-600 hover:rounded-lg hover:text-white text-left font-semibold"><Archive className='px-1 font-semibold' size={24} />Records</div>
+                        </Link>
+                        <button onClick={toggle} className="block flex items-center  w-full px-4 py-2 text-left text-sm text-gray-700 hover:rounded-lg hover:bg-orange-600 hover:text-white font-semibold" onClickCapture={logout}><LogOut className='px-1 font-semibold' size={24} />Sign out</button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div role='button' className="block text-start hove:text-orange-600 px-6 py-2 mx-2 flex items-center" onClick={() => { handleLoginClick(); toggle(); }}>
+                  <UserRound className='px-1 font-bold' size={28} /> Login
+                </div>
+              )}
             </nav>
           )}
           <nav className={`md:ml-auto md:mr-auto md:flex lg:ml-auto lg:mr-auto lg:flex xl:ml-auto xl:mr-auto xl:flex flex-wrap items-center justify-center md:gap-4 lg:gap-8 xl-gap-16 hidden md:m-5 m-0 text-lg font-bold ${shadow ? 'md:text-sm lg:text-base xl:text-base xl:gap-2 lg:gap-2 md:gap-2 md-m-2' : ''}`}>

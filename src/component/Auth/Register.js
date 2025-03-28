@@ -5,7 +5,7 @@ import React from 'react';
 import OTP from './OTP';
 import { registration } from '@/services/auth/register.service';
 import { useForm } from 'react-hook-form';
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, CircleChevronLeft } from "lucide-react";
 
 
 export default function Register({ onClose }) {
@@ -58,9 +58,17 @@ export default function Register({ onClose }) {
         className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center h-auto"
       >
         <div className="p-3 w-[300px] sm:w-[400px] bg-white rounded-lg sm:p-6 space-y-2 sm:space-y-6">
-          <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-600 md:text-2xl dark:text-white">
+          {/* <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-600 md:text-2xl dark:text-white">
             Create your account
-          </h1>
+          </h1> */}
+          <div className='flex justify-between items-center'>
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-600 md:text-2xl dark:text-white">
+              Create your account
+            </h1>
+            <div>
+              <CircleChevronLeft role="button" className="text-orange-600" size={24} onClick={() => onClose()} />
+            </div>
+          </div>
           <form className="space-y-2 sm:space-y-6 h-screen sm:h-auto" onSubmit={handleSubmit(onSubmit)}>
             <div className="mt-2 sm:mt-4 grid grid-cols-1 gap-x-6 gap-y-2 sm:gap-y-4 sm:grid-cols-6">
               <div className="sm:col-span-3 text-left">

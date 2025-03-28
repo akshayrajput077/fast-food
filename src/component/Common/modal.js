@@ -3,7 +3,7 @@ import Image from "next/image.js";
 import Button from "../button/button";
 export default function Modal({ item, onClose, onAddToCart }) {
   return (
-    <div className="fixed inset-0 bg-gray-500 bg-opacity-80 flex justify-center items-center">
+    <div className="fixed inset-0 bg-gray-500 bg-opacity-80 flex justify-center items-center z-[9999]">
       <div className="p-6 rounded-lg w-[300px] sm:w-[400px] space-y-4 bg-white md:space-y-6 sm:p-8">
         <button
           onClick={onClose}

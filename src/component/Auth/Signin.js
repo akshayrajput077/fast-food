@@ -6,10 +6,13 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useForm } from "react-hook-form";
 import { Eye, EyeOff } from "lucide-react";
+import { CircleX } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Register from './Register';
 import ForgotPassword from './ForgotPassword';
+import BrowserStorageService from '@/services/localStroage/BrowserStorageService';
+
 export default function SignIn({ onClose }) {
   useEffect(() => {
     AOS.init({})
@@ -32,9 +35,7 @@ export default function SignIn({ onClose }) {
       const { email, password } = data;
       const user = await loginUser(email, password);
       if (user) {
-        localStorage.setItem('user', JSON.stringify(user));
-        onClose();
-        window.location.reload();
+        onClose(user);
       } else {
         setError('Something went wrong');
         setTimeout(() => {
@@ -66,15 +67,21 @@ export default function SignIn({ onClose }) {
     setForgotInModalOpen(false); // Close the register modal
   };
 
+
   return (
     <>
-      <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-40">
+      <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-[9999]">
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen sm:h-screen lg:py-0 relative">
           {loginModalOpen && (
             <div className="p-6 rounded-lg w-[300px] sm:w-[400px] space-y-4 bg-white md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-600 md:text-2xl dark:text-white">
-                Sign in
-              </h1>
+              <div className='flex justify-between items-center'>
+                <h1 className="text-xl font-bold leading-tight tracking-tight text-orange-600 md:text-2xl dark:text-white">
+                  Sign in
+                </h1>
+                <div>
+                  <CircleX role="button" className="text-orange-600" size={24} onClick={() => onClose()} />
+                </div>
+              </div>
               <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(handleLogin)}>
                 <div className='text-left'>
                   <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
@@ -137,7 +144,7 @@ export default function SignIn({ onClose }) {
                       <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
                     </div>
                   </div>
-                  <div className="text-xs sm:text-sm font-medium text-orange-600 hover:underline dark:text-orange-500" onClick={openForgotModal} >
+                  <div role='button' className="text-xs sm:text-sm font-medium text-orange-600 hover:underline dark:text-orange-500" onClick={openForgotModal} >
                     Forgot password?
                   </div>
                 </div>
@@ -149,7 +156,7 @@ export default function SignIn({ onClose }) {
                   Sign in
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Don’t have an account yet? <a
+                  Don’t have an account yet? <a role='button'
                     className="font-medium text-orange-600 hover:underline dark:text-orange-500"
                     onClick={openRegisterModal} // Open the modal when clicked
                   >
